@@ -1,4 +1,4 @@
-from .recurso import *
+from recurso import *
 import random
 import time
 
