@@ -3,6 +3,11 @@
 Mi dirección de GitHub para este repositorio es la siguiente: [GitHub](https://github.com/lauralardies/productoresyconsumidores)
 https://github.com/lauralardies/productoresyconsumidores
 
+## Breve introducción
+Este ejercicio nos presenta el problema de productor-consumidor y cómo resolverlo.
+¿En qué consiste el **problema productor-consumidor**?
+El productor provee recursos y el consumidor hace uso de dichos recursos. Sin embargo, puede pasar que el productor provea más rápido de lo que el consumidor pueda aceptar o que el consumidor consuma más rápido de lo que el productor pueda aportar. En ambos casos se crea un problema que solucionamos creando equilibrio entre los dos elementos (producir y consumir a la misma velocidad).
+
 ## Cómo ejecutar el código
 Para ejecutar el código, se debe abrir **bash** (ni terminal, ni consola, etc.) e introducir la siguiente línea:
 ```
