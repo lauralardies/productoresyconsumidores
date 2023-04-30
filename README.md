@@ -68,7 +68,7 @@ def productor(id):
         time.sleep(milisegs/1000.0) # Esperar el tiempo aleatorio generado
         mutex_procons.acquire()
         if buffer.total < maxResources:
-            valor_producido = id * 100 + buffer.total
+            valor_producido = id + buffer.total
             buffer.buff[buffer.posactual] = valor_producido
             buffer.posactual += 1
             if buffer.posactual == TAMBUFF:
@@ -97,6 +97,7 @@ def consumidor(id):
             buffer.total -= 1
             print(f'Consumidor {id} consumió {valor_consumido}.')
         mutex_procons.release()
+        break
 ```
 
 ### Código `main.py`
@@ -126,12 +127,11 @@ threads = []
 for i in range(totprod):
     t = threading.Thread(target=productor, args=(i,))
     threads.append(t)
+    t.start()
 
 for i in range(totcons):
     t = threading.Thread(target=consumidor, args=(i,))
     threads.append(t)
-
-for t in threads:
     t.start()
 
 for t in threads:
