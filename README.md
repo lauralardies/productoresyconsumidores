@@ -9,14 +9,14 @@ Este ejercicio nos presenta el problema de productor-consumidor y cómo resolver
 El productor provee recursos y el consumidor hace uso de dichos recursos. Sin embargo, puede pasar que el productor provea más rápido de lo que el consumidor pueda aceptar o que el consumidor consuma más rápido de lo que el productor pueda aportar. En ambos casos se crea un problema que solucionamos creando equilibrio entre los dos elementos (producir y consumir a la misma velocidad).
 
 ## Cómo ejecutar el código
-Para ejecutar el código, se debe abrir **bash** (ni terminal, ni consola, etc.) e introducir la siguiente línea:
+Para ejecutar el código, se debe abrir la terminal e introducir la siguiente línea:
 ```
 cd Productor_Consumidor
 ```
 Esta línea nos permite acceder a la carpeta `Productor_Consumidor`.
-El siguiente paso para poder ejecutar nuestro código es escribir el siguiente comando (todavía estamos en el bash) después de haber accedido a nuestra carpeta.
+El siguiente paso para poder ejecutar nuestro código es escribir el siguiente comando después de haber accedido a nuestra carpeta.
 ```
-python main.py [total del productores] [total de consumidores] [max]
+python3 main.py [total del productores] [total de consumidores] [max]
 ```
 Siendo `[total del productores]` y `[total de consumidores]` los argumentos de línea de comando para el número total de productores y consumidores, respectivamente.
 
