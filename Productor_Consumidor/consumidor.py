@@ -3,7 +3,9 @@ import random
 import time
 
 def consumidor(id):
-    global buffer, mutex_procons
+    mutex_procons = globals.mutex_procons
+    buffer = globals.buffer
+    TAMBUFF = globals.TAMBUFF
     while True:
         milisegs = random.randint(100, 500) # Generar un tiempo de espera aleatorio
         time.sleep(milisegs/1000.0) # Esperar el tiempo aleatorio generado

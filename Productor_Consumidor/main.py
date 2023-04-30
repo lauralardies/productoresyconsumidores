@@ -1,3 +1,4 @@
+from globals import *
 from recurso import *
 from productor import *
 from consumidor import *
@@ -11,10 +12,11 @@ if len(sys.argv) != 4:
 
 totprod = int(sys.argv[1])
 totcons = int(sys.argv[2])
-max = int(sys.argv[3])
+globals.maxResources = int(sys.argv[3])
 
-buffer = Recurso()
-mutex_procons = threading.Lock()
+globals.buffer = Recurso()
+globals.mutex_procons = threading.Lock()
+
 inicio = time.time()
 
 threads = []

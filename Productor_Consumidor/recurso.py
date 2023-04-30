@@ -1,13 +1,13 @@
 import threading
+from globals import *
 
-TAMBUFF = 30
+globals.TAMBUFF = 30
 
 class Recurso:
     def __init__(self):
-        self.buff = [0] * TAMBUFF
+        self.buff = [0] * globals.TAMBUFF
         self.posactual = 0
         self.total = 0
 
-buffer = Recurso()
-mutex_procons = threading.Lock()
-max = None
+globals.buffer = Recurso()
+globals.mutex_procons = threading.Lock()
