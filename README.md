@@ -16,43 +16,58 @@ cd Productor_Consumidor
 Esta línea nos permite acceder a la carpeta `Productor_Consumidor`.
 El siguiente paso para poder ejecutar nuestro código es escribir el siguiente comando (todavía estamos en el bash) después de haber accedido a nuestra carpeta.
 ```
-python main.py [total del productores] [total de consumidores]
+python main.py [total del productores] [total de consumidores] [max]
 ```
 Siendo `[total del productores]` y `[total de consumidores]` los argumentos de línea de comando para el número total de productores y consumidores, respectivamente.
 
 ## Código
 Todos los archivos están guardados en la carpeta `Productor_Consumidor`.
 
+### Código `globals.py`
+```
+class Globals():
+    TAMBUFF = None
+    buffer = None
+    mutex_procons = None
+    maxResources = None
+
+globals = Globals()
+```
+
 ### Código `recurso.py`
 ```
 import threading
+from globals import *
 
-TAMBUFF = 30
+globals.TAMBUFF = 30
 
 class Recurso:
     def __init__(self):
-        self.buff = [0] * TAMBUFF
+        self.buff = [0] * globals.TAMBUFF
         self.posactual = 0
         self.total = 0
 
-buffer = Recurso()
-mutex_procons = threading.Lock()
-max = None
+globals.buffer = Recurso()
+globals.mutex_procons = threading.Lock()
 ```
 
 ### Código `productor.py`
 ```
+from globals import *
 from recurso import *
 import random
 import time
 
 def productor(id):
-    global buffer, mutex_procons, max
-    while buffer.total < max:
+    maxResources = globals.maxResources
+    buffer = globals.buffer
+    mutex_procons = globals.mutex_procons
+    TAMBUFF = globals.TAMBUFF
+    while buffer.total < maxResources:
         milisegs = random.randint(100, 500) # Generar un tiempo de espera aleatorio
         time.sleep(milisegs/1000.0) # Esperar el tiempo aleatorio generado
         mutex_procons.acquire()
-        if buffer.total < max:
+        if buffer.total < maxResources:
             valor_producido = id * 100 + buffer.total
             buffer.buff[buffer.posactual] = valor_producido
             buffer.posactual += 1
@@ -70,7 +85,9 @@ import random
 import time
 
 def consumidor(id):
-    global buffer, mutex_procons
+    mutex_procons = globals.mutex_procons
+    buffer = globals.buffer
+    TAMBUFF = globals.TAMBUFF
     while True:
         milisegs = random.randint(100, 500) # Generar un tiempo de espera aleatorio
         time.sleep(milisegs/1000.0) # Esperar el tiempo aleatorio generado
@@ -84,6 +101,7 @@ def consumidor(id):
 
 ### Código `main.py`
 ```
+from globals import *
 from recurso import *
 from productor import *
 from consumidor import *
@@ -97,10 +115,11 @@ if len(sys.argv) != 4:
 
 totprod = int(sys.argv[1])
 totcons = int(sys.argv[2])
-max = int(sys.argv[3])
+globals.maxResources = int(sys.argv[3])
 
-buffer = Recurso()
-mutex_procons = threading.Lock()
+globals.buffer = Recurso()
+globals.mutex_procons = threading.Lock()
+
 inicio = time.time()
 
 threads = []
