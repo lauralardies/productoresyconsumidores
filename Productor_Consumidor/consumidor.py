@@ -15,3 +15,4 @@ def consumidor(id):
             buffer.total -= 1
             print(f'Consumidor {id} consumió {valor_consumido}.')
         mutex_procons.release()
+        break

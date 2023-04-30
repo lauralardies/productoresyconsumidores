@@ -23,12 +23,11 @@ threads = []
 for i in range(totprod):
     t = threading.Thread(target=productor, args=(i,))
     threads.append(t)
+    t.start()
 
 for i in range(totcons):
     t = threading.Thread(target=consumidor, args=(i,))
     threads.append(t)
-
-for t in threads:
     t.start()
 
 for t in threads:

@@ -13,7 +13,7 @@ def productor(id):
         time.sleep(milisegs/1000.0) # Esperar el tiempo aleatorio generado
         mutex_procons.acquire()
         if buffer.total < maxResources:
-            valor_producido = id * 100 + buffer.total
+            valor_producido = id + buffer.total
             buffer.buff[buffer.posactual] = valor_producido
             buffer.posactual += 1
             if buffer.posactual == TAMBUFF:

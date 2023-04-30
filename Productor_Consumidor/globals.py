@@ -1,4 +1,4 @@
-class Globals:
+class Globals():
     TAMBUFF = None
     buffer = None
     mutex_procons = None
